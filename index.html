@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>WYSWYG</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+</head>
+<body>
+
+    <!-- ПОЛНОЭКРАННАЯ ЗАГРУЗКА -->
+    <div id="loader">
+        <div class="loader-col">
+            <div class="loader-row">
+                <div class="static-text">WHAT YOU&nbsp;</div>
+                <div class="track-wrapper">
+                    <div class="loader-track track-1">
+                        <div>GET</div><div>SEE</div><div>GET</div><div>SEE</div>
+                        <div class="final-word">SEE</div>
+                    </div>
+                </div>
+            </div>
+            <div class="loader-row">
+                <div class="static-text">WHAT YOU&nbsp;</div>
+                <div class="track-wrapper">
+                    <div class="loader-track track-2">
+                        <div>SEE</div><div>GET</div><div>SEE</div><div>GET</div>
+                        <div class="final-word">GET</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- МОБИЛЬНАЯ НАВИГАЦИЯ -->
+    <nav class="mobile-nav">
+        <div class="mobile-header">
+            <div class="header-words">
+                <!-- Первая строка -->
+                <div class="header-row">
+                    <div>WHAT</div>
+                    <div>YOU</div>
+                    <div>SEE</div>
+                </div>
+                <!-- Вторая строка -->
+                <div class="header-row">
+                    <div>WHAT</div>
+                    <div>YOU</div>
+                    <div>GET</div>
+                </div>
+            </div>
+            <!-- Кнопка меню справа на всю высоту -->
+            <div id="mobile-menu-toggle">☰</div>
+        </div>
+        <div class="mobile-menu collapsed" id="mobile-menu">
+            <div class="mobile-menu-row">
+                <div class="mobile-btn active-btn" onclick="openPage('projects', this)"><span class="arrow">—&gt;&nbsp;</span>Projets</div>
+                <div class="mobile-btn" onclick="openPage('bio', this)"><span class="arrow">—&gt;&nbsp;</span>Bio</div>
+            </div>
+            <div class="mobile-menu-row">
+                <div class="mobile-btn theme-toggle-btn" style="grid-column: span 2; font-weight: bold; background: var(--text-color); color: var(--bg-color);">
+                    Dark Theme
+                </div>
+                <div class="mobile-btn" onclick="openPage('contact', this)" style="grid-column: span 2;"><span class="arrow">—&gt;&nbsp;</span>Contact</div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ДЕСКТОПНЫЕ УГЛОВЫЕ КНОПКИ -->
+    <nav class="desktop-nav">
+        <button class="corner-btn top-left active-btn" onclick="openPage('projects', this)"><span class="arrow">—&gt;&nbsp;</span>Projets</button>
+        <button class="corner-btn top-right" onclick="openPage('bio', this)"><span class="arrow">—&gt;&nbsp;</span>Bio</button>
+        <button class="corner-btn bottom-left theme-toggle-btn">Dark Theme</button>
+        <button class="corner-btn bottom-right" onclick="openPage('contact', this)"><span class="arrow">—&gt;&nbsp;</span>Contact</button>
+    </nav>
+
+    <!-- ГЛАВНАЯ: ПРОЕКТЫ -->
+    <main id="projects" class="page">
+        <div class="sidebar">
+            <ul>
+                <li onclick="filterProjects('all', this)" class="active-filter">Tous</li>
+                <li onclick="filterProjects('fashion', this)">Fashion</li>
+                <li onclick="filterProjects('still-life', this)">Still Life</li>
+                <li onclick="filterProjects('editorial', this)">Editorial</li>
+                <li onclick="filterProjects('automotive', this)">Automotive</li>
+            </ul>
+        </div>
+        
+        <div class="horizontal-scroll gallery">
+            
+            <!-- Шаблон Карточки 1 -->
+            <div class="gallery-item" data-category="editorial" data-target="project-1" onclick="openPage('project-1')">
+                <div class="item-image-wrapper"><img src="img\AP Solulu Classic Handshake.jpg"   alt="Обложка 1"></div>
+                <div class="item-caption"><h3>Solutions.</h3><p>Editorial shoot.</p></div>
+            </div>
+
+            <!-- Шаблон Карточки 2 -->
+            <div class="gallery-item" data-category="automotive" data-target="project-2" onclick="openPage('project-2')">
+                <div class="item-image-wrapper"><img src="img\car\DSC_7037 копия.jpg"   alt="Обложка 2"></div>
+                <div class="item-caption"><h3>RYE MEET</h3><p>Street cars shoot.</p></div>
+            </div>
+
+            <!-- Шаблон Карточки 3 -->
+            <div class="gallery-item" data-category="still-life" data-target="project-3" onclick="openPage('project-3')">
+                <div class="item-image-wrapper"><img src="img\jew\Silver Cross 1.jpg"   alt="Обложка 3"></div>
+                <div class="item-caption"><h3>ОАО КРАСИВЫЕ ЛЮДИ</h3><p>Gothic monumentalism.</p></div>
+            </div>
+
+            <div class="gallery-item" data-category="still-life" data-target="project-5" onclick="openPage('project-5')">
+                <div class="item-image-wrapper"><img src="img\jew\ЭЛЬФ 1 cuffs combo.jpg"   alt="Обложка 5"></div>
+                <div class="item-caption"><h3>ЭЛЬФ</h3><p>Industrial geometry</p></div>
+            </div>
+            
+            <!-- Шаблон Карточки 4 -->
+            <div class="gallery-item" data-category="fashion" data-target="project-4" onclick="openPage('project-4')">
+                <div class="item-image-wrapper"><img src="img\clothes\lilium tag 3.jpg"   alt="Обложка 4"></div>
+                <div class="item-caption"><h3>ОАО КРАСИВЫЕ ЛЮДИ</h3><p>Here we move away from the banal "catalog" and write about clothes as sculpture, tangible fabric and space.</p></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ВНУТРЕННЯЯ СТРАНИЦА ПРОЕКТА 1 -->
+    <main id="project-1" class="page project-page" data-category="editorial">
+        <button class="back-btn" onclick="openPage('projects')"><— Back to projects</button>
+        <div class="horizontal-scroll project-content">
+            <div class="project-layout-3col">
+                <div class="col-left">
+                    <h2>A concept with a watch</h2>
+                    <p class="big-text">A conceptual advertising project where the usual subject shooting is transformed into an artistic exploration of facets, revealing the cold shine of watch steel and futuristic design through the prism of monochrome industrial textures.</p>
+                </div>
+                <div class="col-center">
+                    <img src="img\AP Solulu Call.jpg"   alt="Фото">
+                    
+                </div>
+                <div class="col-center">
+                    <img src="img\AP Solulu On The Floor 55mm.jpg"   alt="Фото">
+                    
+                </div>
+                <div class="col-center">
+                    <img src="img\AP Solulu On The Floor.jpg"   alt="Фото">
+                    
+                </div>
+                <div class="col-center">
+                    <img src="img\AP Solulu Upper Handshake.jpg"   alt="Фото">
+                    
+                </div>
+                <div class="col-center">
+                    <img src="img\AP Solulu Hand 1.jpg"   alt="Фото">
+                    
+                </div>
+                <div class="col-center">
+                    <img src="img\AP Solulu Hand 2.jpg"   alt="Фото">
+                    
+                </div>
+                <div class="col-center">
+                    <img src="img\AP Solulu Hand 3.jpg"   alt="Фото">
+                    
+                </div>
+                <div class="col-right">
+                    <div class="text-block">
+                        <h3>Context</h3>
+                        <p>Conceptual shooting of watches for the future creation of advertising posters for Solutions.</p>
+                    </div>
+                    <div class="client-row next-project" onclick="nextProject('project-1')">Projet suivant —></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ВНУТРЕННЯЯ СТРАНИЦА ПРОЕКТА 2 -->
+    <main id="project-2" class="page project-page" data-category="automotive">
+        <button class="back-btn" onclick="openPage('projects')"><— Back to projects</button>
+        <div class="horizontal-scroll project-content">
+            <div class="project-layout-3col">
+                <div class="col-left">
+                    <h2>Respect Your Elders 2026</h2>
+                    <p class="big-text">A series of shots from an automobile festival, unfolding as a visual exploration of the impeccable geometry of the body, where strict metal lines enter into a contrasting dialogue with chaotic wildlife, and random light emphasizes the street aesthetics.</p>
+                </div>
+                <div class="col-center">
+                    <img src="img\car\DSC_6877 копия.jpg" alt="Фото">
+                    <span class="caption">Porsche 911 Cabrio</span>
+                </div>
+                <div class="col-center">
+                    <img src="img\car\DSC_6960 копия.jpg" alt="Фото">
+                    <span class="caption">Pontiac Firebird</span>
+                </div>
+                <div class="col-center">
+                    <img src="img\car\DSC_6875 копия.jpg" alt="Фото">
+                    <span class="caption">Dodge RAM Van</span>
+                </div>
+                <div class="col-center">
+                    <img src="img\car\DSC_6974 копия.jpg"   alt="Фото">
+                    <span class="caption">ALPINA B10 E21</span>
+                </div>
+                <div class="col-center">
+                    <img src="img\car\DSC_6977 копия.jpg"   alt="Фото">
+                    <span class="caption">Jaguar XJ</span>
+                </div>
+                <div class="col-center">
+                    <img src="img\car\DSC_6975 копия.jpg"   alt="Фото">
+                
+                </div>
+                <div class="col-center">
+                    <img src="img\car\DSC_7036 копия.jpg"   alt="Фото">
+                    <span class="caption">BMW 635CSI</span>
+                </div>
+                <div class="col-center">
+                    <img src="img\car\DSC_6982 копия.jpg"   alt="Фото">
+                    <span class="caption">Land Rover Discovery</span>
+                </div>
+                <div class="col-center">
+                    <img src="img\car\DSC_7028 копия.jpg"   alt="Фото">
+                    <span class="caption">Land Rover Discovery</span>
+                </div>
+                <div class="col-center">
+                    <img src="img\car\DSC_6926 копия.jpg"   alt="Фото">
+                    <span class="caption">Buick Special</span>
+                </div>
+                <div class="col-right">
+                    <div class="client-row next-project" onclick="nextProject('project-2')">Projet suivant —></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+            <!-- ВНУТРЕННЯЯ СТРАНИЦА ПРОЕКТА 5 -->
+    <main id="project-5" class="page project-page" data-category="still-life">
+        <button class="back-btn" onclick="openPage('projects')"><— Back to projects</button>
+        <div class="horizontal-scroll project-content">
+            <div class="project-layout-3col">
+                <div class="col-left">
+                    <h2>Industrial geometry</h2>
+                    <p class="big-text">Heavy cuff bracelets inspired by the aesthetics of mechanical design and brutalism. The massive hinged structure combined with the matte, artificially aged surface conveys a feeling of cold steel power.</p>
+                </div>
+                <div class="col-center"><img src="img\jew\ЭЛЬФ 1 choker.jpg"   alt="Фото"></div>
+                <div class="col-left" style="justify-content: center; height: 100%;">
+                    <p class="big-text">Embossed rivets with symbolic engraving and internal patterns set a strict rhythm, balancing on the edge between rough utilitarianism and jewelry detailing.</p>
+                </div>
+                <div class="col-center"><img src="img\jew\ЭЛЬФ 1 bracelet 1.jpg"   alt="Фото"></div>
+                <div class="col-center"><img src="img\jew\ЭЛЬФ 1 bracelet 2.jpg"   alt="Фото"></div>
+            
+                <div class="col-center"><img src="img\jew\ЭЛЬФ 1 RING 1.jpg"   alt="Фото"></div>
+                <div class="col-center"><img src="img\jew\ЭЛЬФ 1 RING 2.jpg"   alt="Фото"></div>
+                <div class="col-right">
+                    <div class="client-row next-project" onclick="nextProject('project-5')">Projet suivant —></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ВНУТРЕННЯЯ СТРАНИЦА ПРОЕКТА 3 -->
+    <main id="project-3" class="page project-page" data-category="still-life">
+        <button class="back-btn" onclick="openPage('projects')"><— Back to projects</button>
+        <div class="horizontal-scroll project-content">
+            <div class="project-layout-3col">
+                
+                <!-- ВСТУПИТЕЛЬНЫЙ ТЕКСТ -->
+                <div class="col-left">
+                    <h2>Gothic monumentalism</h2>
+                    <p class="big-text">A massive pendant that reinterprets the classic dark aesthetic through a complex, aggressive geometry. The multilevel architecture of the product with an abundance of sculptural details — from the central figure to the skull at the base — creates a deep play of light and shadow.</p>
+                </div>
+
+                <!-- ФОТОГРАФИИ (Часть 1) -->
+                <div class="col-center"><img src="img\jew\Silver Cross 2.jpg"   alt="Фото"></div>
+                <div class="col-center"><img src="img\jew\Silver Cross 3.jpg"   alt="Фото"></div>
+                
+                <!-- === ТЕКСТ ПОСЕРЕДИНЕ (Между фото) === -->
+                <!-- Снова используем col-left, так как в нем правильная ширина текста -->
+                <div class="col-left" style="justify-content: center; height: 100%;">
+                    <p class="big-text">Patinated metal and chopped, towering lines emphasize the brutal nature of the jewelry, turning it into an expressive modern artifact.</p>
+                </div>
+
+                <!-- ФОТОГРАФИИ (Часть 2) -->
+                <div class="col-center"><img src="img\jew\Silver Cross 4.jpg"   alt="Фото"></div>
+                <div class="col-center"><img src="img\jew\Silver Cross 5.jpg"   alt="Фото"></div>
+                
+                <!-- ФИНАЛЬНАЯ КОЛОНКА С КНОПКОЙ -->
+                <div class="col-right">
+                    <div class="client-row next-project" onclick="nextProject('project-3')">Projet suivant —></div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+
+    <!-- ВНУТРЕННЯЯ СТРАНИЦА ПРОЕКТА 4 -->
+    <main id="project-4" class="page project-page" data-category="fashion">
+        <button class="back-btn" onclick="openPage('projects')"><— Back to projects</button>
+        <div class="horizontal-scroll project-content">
+            <div class="project-layout-3col">
+                <div class="col-left">
+                    <h2>Catalog ОАО КРАСИВЫЕ ЛЮДИ</h2>
+                    <p class="big-text">A commercial subject photography of clothing that explores the plasticity of materials and the pure architecture of the cut, where the focus shifts from the utilitarian function of the thing to its texture, the depth of the folds and the subtle play of chiaroscuro in a confined studio space.</p>
+                </div>
+                <div class="col-center"><img src="img\clothes\rose hoodie 1 black bg.jpg"   alt="Фото"></div>
+                <div class="col-center"><img src="img\clothes\rose hoodie 2 black bg.jpg"   alt="Фото"></div>
+                <div class="col-center"><img src="img\clothes\rose hoodie 3.jpg"   alt="Фото"></div>
+                <div class="col-center"><img src="img\clothes\rose hoodie 4.jpg"   alt="Фото"></div>
+                <div class="col-center"><img src="img\clothes\rose hoodie 5.jpg"   alt="Фото"></div>
+                <div class="col-center"><img src="img\clothes\rose hoodie 6.jpg"   alt="Фото"></div>
+                <div class="col-center"><img src="img\clothes\rose hoodie 7.jpg"   alt="Фото"></div>
+                <div class="col-center"><img src="img\clothes\rose hoodie 8.jpg"   alt="Фото"></div>
+                <div class="col-center"><img src="img\clothes\rose hoodie 11.jpg"   alt="Фото"></div>
+                <div class="col-center"><img src="img\clothes\rose hoodie 12.jpg"   alt="Фото"></div>
+                <div class="col-center"><img src="img\clothes\rose hoodie 14.jpg"   alt="Фото"></div>
+                <div class="col-right">
+                    <div class="client-row next-project" onclick="nextProject('project-4')">Projet suivant —></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- СТРАНИЦА BIO -->
+    <main id="bio" class="page">
+        <button class="back-btn" onclick="openPage('projects')">← Назад</button>
+        <div class="horizontal-scroll project-content">
+            <div class="project-layout-3col">
+                <div class="col-left">
+                    <h2>About me</h2>
+                    <p class="big-text">I am engaged in subject and conceptual photography, exploring shapes and light.</p>
+                </div>
+                <div class="col-center"><img src="img\photo_2026-05-24_20-57-41.jpg" alt="Мое фото"></div>
+                <div class="col-right">
+                    <div class="text-block"><h3>Clients</h3><p>Solutions, Slava Marlow, ОАО КРАСИВЫЕ ЛЮДИ etc.</p></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- СТРАНИЦА КОНТАКТОВ -->
+    <main id="contact" class="page">
+        <div class="contact-text"><h2>Write me down</h2><p>wyswyg@info.com<br>+7 921 405-11-21</p></div>
+        <div id="physics-canvas"></div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
